@@ -215,3 +215,6 @@ ipc.on('update-notify-value', (event, arg) => {
     win.webContents.send('targetPriceVal', arg) //defining the name of the message as 'targetPriceVal' and binding it to the response which is whatever is entered into the text field in the add.html file. So. it's gonna send that value to 'win', which is currently bound to the index.html when we create the browser window
 })
 
+try {
+    require('electron-reloader')(module)
+} catch (_) {} 
