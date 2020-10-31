@@ -1,0 +1,23 @@
+button {
+    display: block;
+    position: absolute;
+    padding: 16px 32px;
+    border: none;
+}
+
+button:hover {
+    background-color: aqua;
+}
+
+.nav-bar {
+    text-align: left;
+    padding-bottom: 150px;
+    border: 3px red solid;
+    max-width: 200px;
+}
+
+.nav-button {
+    display: in-block;
+    border: 3px black solid;
+    padding: 10px;
+}

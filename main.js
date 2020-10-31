@@ -1,4 +1,3 @@
-
 const {app, BrowserWindow, Menu} = require('electron')
 const shell = require('electron').shell
 
@@ -14,7 +13,7 @@ function createWindow () {
     win = new BrowserWindow({width: 800, height: 600})
 
     // and load the index.html of the app.
-    win.loadFile('src/index.html')
+    win.loadFile('index.html')
 
     // Open the DevTools.
     win.webContents.openDevTools()
