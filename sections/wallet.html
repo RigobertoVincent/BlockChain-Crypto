@@ -1,12 +1,24 @@
 <template class="task-template">
-  <section id="wallet-section" class="section js-section content">  
+  <section id="wallet-section" class="section js-section">  
     <div class="section-wrapper">
-      <ul>
-        <li>wallet balance</li>
-        <li>list of owned coins</li>
-        <li>graph</li>
-      </ul>
+      <div class="container">
+      <!-- <ul>
+        <li class="items">wallet balance</li>
+        <li class="items">list of owned coins</li>
+        <li class="items">pie graph of coin owned distribution</li>
+      </ul> -->
+      <div>wallet balance: <span>$200</span></div>
+      <div>list of owned coins:
+        <li>BTC: 5</li>
+        <li>ETH: 17</li>
+        <li>LTC: 2</li>
+        <li>...etc</li>
+      </div>
+      
+        
+      </div>
+      <canvas id="pie-chart" width="400" height="400">pie graph of coin owned distribution</canvas>
     </div>
-    <!-- <div id="bitcoinChart" classname="bitcoinChart" ></div> -->
   </section>
 </template>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>

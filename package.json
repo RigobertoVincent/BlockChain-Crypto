@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "chart.js": "^2.9.4",
     "dotenv": "^8.2.0",
     "eon": "0.0.2",
     "eon-chart": "^1.3.1",

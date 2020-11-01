@@ -3,6 +3,7 @@
 *** This file handles the content being rendered on index.html
 ***
 */
+
 document.body.addEventListener('click', (event) => {
     if (event.target.dataset.section) {
         handleSectionTrigger(event);
@@ -29,7 +30,6 @@ function handleSectionTrigger(event) {
 
 function hideAllSectionsAndDeselectButtons() {
     const sections = document.querySelectorAll('.section.is-shown');
-    console.log(sections);
     Array.prototype.forEach.call(sections, (section) => {
         section.classList.remove('is-shown');
     })

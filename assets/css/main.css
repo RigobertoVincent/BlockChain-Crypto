@@ -1,6 +1,19 @@
+html, body {
+    height: 100%;
+}
+
 .content {
-    padding-top: 100px;
-    min-width: 500px;
-    margin: auto;
+    height: 100%;
     border: 3px solid #73AD21;
+    margin-left: 260px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    overflow-y: hidden;
+    
+}
+
+
+.content.is-shown {
+    visibility: visible;
+    opacity: 1;
 }

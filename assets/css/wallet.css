@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    background-color: royalblue;
+    align-items: stretch;
+}
+
+.container > div {
+    order: 2;
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 20px;
+    width: 33%;
+}
