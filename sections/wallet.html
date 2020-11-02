@@ -3,14 +3,31 @@
     <div class="section-wrapper">
       <div class="container">
       <div>wallet balance: <span>$200</span></div>
+
       <div>list of owned coins:
         <li>BTC: 5</li>
         <li>ETH: 17</li>
         <li>LTC: 2</li>
-        <li>...etc</li>
       </div>
-      
-        
+
+      <div>
+        Purchase Coins: 
+        <select name="list-of-crypte" id="">
+          <option value="BTC">BTC</option>
+          <option value="ETH">ETH</option>
+          <option value="LINK">LINK</option>
+          <option value="BCH">BCH</option>
+          <option value="LTC">LTC</option>
+        </select>
+
+        Quantity: 
+        <input type="number" min="1" max="100">
+        <br>
+
+        Price: $100 USD
+        <button>purchase</button>
+      </div> 
+
       </div>
       <canvas id="pie-chart" width="400" height="400">pie graph of coin owned distribution</canvas>
     </div>

@@ -6,17 +6,14 @@ const price = document.getElementById('price');
 const topTenCrypto = ['BTC', 'ETH', 'LINK', 'BCH', 'LTC', 'XRP', 'TRX', 'EOS', 'BNB', 'BSV'];
 const imageArray = [];
 
-//TODO : GET IMAGES ARRAY
-//       SHOW ALL 10 CURRENCIES (CURRENTLY ONLY SHOWS ONE)
-//       ADD CSSS
-
 (function getTopTenCryptos() {
     for (const coin of topTenCrypto) {
         axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=USD`)
         .then(res => {
-           console.log(res);
-           name.innerHTML = coin;
-           price.innerHTML = res.data.USD;
+            let node = document.createElement("li");
+            let nameNode = document.createTextNode(`Coin: ${coin} Price: ${res.data.USD}`);
+            node.appendChild(nameNode);
+            document.getElementById('coins').appendChild(node);
         })
         .catch(err => {
             console.error(err);

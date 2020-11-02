@@ -1,0 +1,6 @@
+/* TODO
+*** style each li
+ */
+#coins > li {
+    list-style: none;
+}
