@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require('axios');
 
 const name = document.getElementById('name');
 const img = document.getElementById('image');

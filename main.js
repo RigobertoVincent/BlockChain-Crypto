@@ -1,16 +1,24 @@
 const {app, BrowserWindow, Menu} = require('electron')
 const shell = require('electron').shell
+const ipc = require('electron').ipcMain;
+
+const DataStore = require('./dataStore');
+
+const userData = new DataStore({ name: 'User Account' });
 
 
-const ipc = require('electron').ipcMain //inter process communication, allowing communication between those windows or processes
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win
+let win;
 
 function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({width: 800, height: 600})
+    win = new BrowserWindow({
+        width: 800, 
+        height: 600,
+        enableRemoteModule: true
+    })
 
     // and load the index.html of the app.
     win.loadFile('index.html')
@@ -25,6 +33,18 @@ function createWindow () {
         // when you should delete the corresponding element.
         win = null
     })
+
+
+    // TODO: MAKE SURE TO CLEAR DISS SHIT CUZ ITS TREATING THE SELECTED COIN LIKE A TODO LIST
+    ipc.on('update-wallet', (event, coin) => {
+        const updatedWallet = userData.addCoin(coin);
+        win.send('wallet', updatedWallet);
+    })
+
+
+
+
+
 
     //creating the menu bar
     const {app, Menu} = require('electron')

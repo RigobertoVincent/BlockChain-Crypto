@@ -27,8 +27,10 @@
     "axios": "^0.18.0",
     "chart.js": "^2.9.4",
     "dotenv": "^8.2.0",
+    "electron-store": "^6.0.1",
     "eon": "0.0.2",
     "eon-chart": "^1.3.1",
+    "express": "^4.17.1",
     "node-notifier": "^5.2.1",
     "pubnub": "^4.29.9"
   }
