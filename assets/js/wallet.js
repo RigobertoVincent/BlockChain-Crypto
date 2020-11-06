@@ -1,6 +1,7 @@
 const axios = require('axios');
-const { text } = require('express');
 const ipc = require('electron').ipcRenderer;
+const store = require('../../dataStore');
+
 
 const walletBalance = document.getElementById('wallet-balance');
 const selectedCoin = document.getElementById('selected-coin');
@@ -8,7 +9,16 @@ const numberOfCoins = document.getElementById('number-of-coins');
 const totalPrice = document.getElementById('total-price');
 const purchaseCoinsButton = document.getElementById('purchase-coins');
 
-const ownedCoins = document.getElementById('owned-coins');
+
+document.addEventListener('DOMContentLoaded', function() {
+    for (let i = 0; i < store.get('coin').length; i++) {
+        let li = document.createElement('li');
+        let textNode = document.createTextNode(`${store.get('coin')[i].nameOfCrypto} : ${store.get('coin')[i].amount}`);
+        li.appendChild(textNode);
+        document.getElementById('owned-coins').appendChild(li);
+    }
+});
+
 
 purchaseCoinsButton.addEventListener('click', (event) => {
     axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${selectedCoin.value}&tsyms=USD`)
@@ -17,22 +27,26 @@ purchaseCoinsButton.addEventListener('click', (event) => {
         let total = currentCoinPrice * numberOfCoins.value;
         totalPrice.innerHTML = "" + total;
     })
+    .then(() => {
+        // send owned coins update
+        ipc.send('update-list', [selectedCoin.value, numberOfCoins.value]);
+
+        // send wallet update
+        ipc.send('update-wallet', totalPrice.innerHTML);
+
+        // reset total price
+        
+    })
+    .then(() => {
+        totalPrice.innerHTML = "" + 0;
+    })
     .catch((err) => {
         console.error(err);
     })
 
-    console.log(selectedCoin.value);
-    ipc.send('update-wallet', selectedCoin.value);
-    
     
     // reset total price
     
-
-    // once purchased, add new coins to ownedCoins
-
-
-    // change wallet balance
-
 
     // update pie chart
 });
@@ -40,9 +54,14 @@ purchaseCoinsButton.addEventListener('click', (event) => {
 
 // receives updated wallet information
 ipc.on('wallet', (event, updatedWallet) => {
-    console.log(updatedWallet);
-    let node = document.createElement('li');
-    let textNode = document.createTextNode(updatedWallet.todos[0].toString());
-    node.appendChild(textNode);
-    ownedCoins.appendChild(node);
-})
+    walletBalance.innerHTML = updatedWallet;
+});
+
+// receives update list information
+ipc.on('list', (event, updatedList) => {
+    let li = document.createElement('li');
+    let index = updatedList.length - 1;
+    let textNode = document.createTextNode(`${updatedList[index].nameOfCrypto} : ${updatedList[index].amount}`);
+    li.appendChild(textNode);
+    document.getElementById('owned-coins').appendChild(li);
+});

@@ -49,6 +49,7 @@ function processRequest() {
     if (xhr.readyState == 4 && xhr.status == 200) {
         let coin = crypto;
         let response = JSON.parse(xhr.responseText);
+        console.log(response);
 
         pubnub.publish({
             channel: 'bitcoin-feed',

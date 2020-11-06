@@ -1,10 +1,11 @@
-const {app, BrowserWindow, Menu} = require('electron')
+const {app, BrowserWindow, Menu} = require('electron');
+const { clear } = require('./dataStore');
 const shell = require('electron').shell
 const ipc = require('electron').ipcMain;
 
 const DataStore = require('./dataStore');
 
-const userData = new DataStore({ name: 'User Account' });
+const userData = DataStore;
 
 
 
@@ -35,15 +36,27 @@ function createWindow () {
     })
 
 
-    // TODO: MAKE SURE TO CLEAR DISS SHIT CUZ ITS TREATING THE SELECTED COIN LIKE A TODO LIST
+    // receives message and sends updated wallet value
     ipc.on('update-wallet', (event, coin) => {
-        const updatedWallet = userData.addCoin(coin);
-        win.send('wallet', updatedWallet);
-    })
+        const currWalletTotal = userData.get('wallet');
+        const newWalletTotal = Number(currWalletTotal) + Number(coin);
+        userData.set('wallet', newWalletTotal);
+        win.send('wallet', userData.get('wallet'));
+    });
 
-
-
-
+    // receives message and sends updated list of crypto coins
+    ipc.on('update-list', (event, coinName) => {
+        [nameOfCrypto, amount] = [...coinName];
+        let obj = { 
+            nameOfCrypto : nameOfCrypto,
+            amount: amount
+        }
+        
+        const data = userData.get('coin');
+        const newData = [...(data || []), obj]
+        userData.set('coin', newData)
+        win.send('list', userData.get('coin'));
+    });
 
 
     //creating the menu bar
