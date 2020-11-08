@@ -1,16 +1,50 @@
 .container {
     display: flex;
     height: 200px;
+    margin: 0 auto;
     justify-content: center;
     background-color: royalblue;
     align-items: stretch;
 }
 
-.container > div {
+.list-of-coins {
     order: 2;
     background-color: #f1f1f1;
     margin: 10px;
     padding: 20px;
     font-size: 20px;
-    width: 33%;
+    position: relative;
+    width: 400px;
+    overflow-x: hidden;
+}
+
+.balance {
+    color: white;
+    font-size: larger;
+    font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif; 
+}
+
+#owned-coins {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* column of ul */
+#owned-coins > li {
+    color: white;
+    text-align: center;
+    list-style: none;
+    padding: 90px;
+    flex: 0 0 200px;
+    margin: 10px;
+    border: 1px solid #272d36;
+    box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.7);
+    border-radius: 25px;
+}
+
+#pie-chart {
+    text-align: center;
+    width: 400;
+    height: 400;
 }

@@ -1,6 +1,28 @@
 <template class="task-template">
     <section id="search-section" class="section js-section">
         <div class="section-wrapper">
+
+            <div class="container">
+                <div class="list-of-coins">
+                  <span>Purchase Coins: </span>
+                  <select name="list-of-crypto" id="selected-coin">
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                    <option value="LINK">LINK</option>
+                    <option value="BCH">BCH</option>
+                    <option value="LTC">LTC</option>
+                  </select>
+        
+                  Quantity: 
+                  <input type="number" min="1" max="100" id="number-of-coins">
+                  <br>
+        
+                  <span>Price: $<span id="total-price">0</span> USD</span>
+                  <button id="purchase-coins">purchase</button>
+                </div> 
+              </div>
+
+              
             <form action="">
                 <input id="search-crypto" type="text" placeholder="Search..." name="search">
                 <button type="submit" id="searchCoin">Search</button>

@@ -1,39 +1,21 @@
 <template class="task-template">
-  <section id="wallet-section" class="section js-section">  
+  <section id="wallet-section" class="section js-section is-shown">  
     <div class="section-wrapper">
-      <div class="container">
-      <div>Total Balance: 
-        <span>$</span><span id="wallet-balance">200</span>
+      <div class='balance'>
+        <span>Total Balance</span>
+        <div class="total-balance">
+          <span>$</span><span id="wallet-balance">0</span>
+        </div>
       </div>
-
-      <div>
-        list of owned coins:
+      <canvas id="pie-chart">pie graph of coin owned distribution</canvas>
+    </div>
+    
+      <!-- LIST OF COINS -->
+      <div class="flex-grid">
         <ul id="owned-coins">
           <li>LTC:<span id="amount">2</span></li>
         </ul>
       </div>
-
-      <div>
-        <span>Purchase Coins: </span>
-        <select name="list-of-crypto" id="selected-coin">
-          <option value="BTC">BTC</option>
-          <option value="ETH">ETH</option>
-          <option value="LINK">LINK</option>
-          <option value="BCH">BCH</option>
-          <option value="LTC">LTC</option>
-        </select>
-
-        Quantity: 
-        <input type="number" min="1" max="100" id="number-of-coins">
-        <br>
-
-        <span>Price: $<span id="total-price">0</span> USD</span>
-        <button id="purchase-coins">purchase</button>
-      </div> 
-
-      </div>
-      <canvas id="pie-chart" width="400" height="400">pie graph of coin owned distribution</canvas>
-    </div>
   </section>
 </template>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>

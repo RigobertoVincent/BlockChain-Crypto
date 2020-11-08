@@ -1,28 +1,15 @@
 .section {
-    /* position: absolute;
-    margin-left: 260px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    color: var(--color-accent);
-    
-    /* Hide */
-
-    /* height: 100%; */
-
     position: absolute;
     pointer-events: none;
     visibility: hidden;
     opacity: 0;
     transform: translateX(-20px);
     transition: visibility 0s .12s linear , opacity .12s ease-in, transform .12s ease-in;
-    
+    overflow-x: hidden;
 }
 
 .section.is-shown {
+    height: 100%;
     pointer-events: auto;
     visibility: visible;
     opacity: 1;

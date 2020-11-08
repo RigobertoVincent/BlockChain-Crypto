@@ -2,7 +2,6 @@ const axios = require('axios');
 const ipc = require('electron').ipcRenderer;
 const store = require('../../dataStore');
 
-
 const walletBalance = document.getElementById('wallet-balance');
 const selectedCoin = document.getElementById('selected-coin');
 const numberOfCoins = document.getElementById('number-of-coins');
@@ -32,12 +31,11 @@ purchaseCoinsButton.addEventListener('click', (event) => {
         ipc.send('update-list', [selectedCoin.value, numberOfCoins.value]);
 
         // send wallet update
-        ipc.send('update-wallet', totalPrice.innerHTML);
-
-        // reset total price
-        
+        ipc.send('update-wallet', totalPrice.innerHTML);        
     })
     .then(() => {
+        // TODO: FIX, CLEARING WAY TOO FAST. NEEDS DELAY OR IMPLEMENT DIFFERENTLY
+        // reset total price
         totalPrice.innerHTML = "" + 0;
     })
     .catch((err) => {
