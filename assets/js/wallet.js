@@ -10,12 +10,16 @@ const purchaseCoinsButton = document.getElementById('purchase-coins');
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    // load list of owned crypto
     for (let i = 0; i < store.get('coin').length; i++) {
         let li = document.createElement('li');
         let textNode = document.createTextNode(`${store.get('coin')[i].nameOfCrypto} : ${store.get('coin')[i].amount}`);
         li.appendChild(textNode);
         document.getElementById('owned-coins').appendChild(li);
     }
+
+    // load balance
+    walletBalance.innerHTML = store.get('wallet');
 });
 
 
@@ -33,20 +37,9 @@ purchaseCoinsButton.addEventListener('click', (event) => {
         // send wallet update
         ipc.send('update-wallet', totalPrice.innerHTML);        
     })
-    .then(() => {
-        // TODO: FIX, CLEARING WAY TOO FAST. NEEDS DELAY OR IMPLEMENT DIFFERENTLY
-        // reset total price
-        totalPrice.innerHTML = "" + 0;
-    })
     .catch((err) => {
         console.error(err);
     })
-
-    
-    // reset total price
-    
-
-    // update pie chart
 });
 
 

@@ -7,7 +7,7 @@ button {
 
 .nav-bar {
     text-align: left;
-    border: 3px red solid;
+    border: 3px #272d36 solid;
     height: 100%;
     width: 260px;
     position: fixed;
