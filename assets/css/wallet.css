@@ -19,6 +19,7 @@
 }
 
 .balance {
+    padding-left: 5px;
     color: white;
     font-size: larger;
     font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif; 

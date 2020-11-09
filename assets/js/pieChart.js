@@ -10,17 +10,20 @@ let ETH = 0;
 let LINK = 0
 let BCH = 0;
 let LTC = 0;
-for (let i = 0; i < listOfCryptos.length; i++) {
-    if (listOfCryptos[i].nameOfCrypto == 'BTC') {
-        BTC += Number(listOfCryptos[i].amount);
-    } else if (listOfCryptos[i].nameOfCrypto == 'ETH') {
-        ETH += Number(listOfCryptos[i].amount);
-    } else if  (listOfCryptos[i].nameOfCrypto == 'LINK') {
-        LINK += Number(listOfCryptos[i].amount);
-    } else if (listOfCryptos[i].nameOfCrypto == 'BCH') {
-        BCH += Number(listOfCryptos[i].amount);
-    } else {
-        LTC += Number(listOfCryptos[i].amount);
+
+if (listOfCryptos.length > 0) {
+    for (let i = 0; i < listOfCryptos.length; i++) {
+        if (listOfCryptos[i].nameOfCrypto == 'BTC') {
+            BTC += Number(listOfCryptos[i].amount);
+        } else if (listOfCryptos[i].nameOfCrypto == 'ETH') {
+            ETH += Number(listOfCryptos[i].amount);
+        } else if  (listOfCryptos[i].nameOfCrypto == 'LINK') {
+            LINK += Number(listOfCryptos[i].amount);
+        } else if (listOfCryptos[i].nameOfCrypto == 'BCH') {
+            BCH += Number(listOfCryptos[i].amount);
+        } else {
+            LTC += Number(listOfCryptos[i].amount);
+        }
     }
 }
 
@@ -42,7 +45,7 @@ let dataOptions = {
 };
 
 let options = {
-    // no options for now
+    aspectRatio: 2.5
 }
 
 const myDoughnutChart = new Chart(ctx, {

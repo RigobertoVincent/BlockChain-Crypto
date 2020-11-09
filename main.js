@@ -51,12 +51,13 @@ function createWindow () {
             nameOfCrypto : nameOfCrypto,
             amount: amount
         }
-        
         const data = userData.get('coin');
         const newData = [...(data || []), obj]
         userData.set('coin', newData)
         win.send('list', userData.get('coin'));
     });
+
+    
 
 
     //creating the menu bar

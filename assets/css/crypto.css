@@ -3,4 +3,7 @@
  */
 #coins > li {
     list-style: none;
+    border: 3px red solid;
+    margin: 10px;
+    
 }

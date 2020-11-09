@@ -6,7 +6,6 @@ button {
 }
 
 .nav-bar {
-    text-align: left;
     border: 3px #272d36 solid;
     height: 100%;
     width: 260px;
@@ -15,17 +14,22 @@ button {
     top: 0;
     left: 0;
     overflow-x: hidden;
-    padding-top: 20px;
 }
 
 .nav-button {
-    display: in-block;
-    border: 2px black solid;
+    background-color:  #485461;
+    
+    margin-bottom: 10px;
     padding: 10px;
+    display: in-block;
+    text-align: left;
+    font-size: 25px;
+    color: white;
+    font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif; 
 }
 
 .nav-button:hover {
-    background-color: aqua;
+    background-color: #cccccc;
 }
 
 
