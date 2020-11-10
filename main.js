@@ -35,11 +35,11 @@ function createWindow () {
         win = null
     })
 
-
     // receives message and sends updated wallet value
     ipc.on('update-wallet', (event, coin) => {
         const currWalletTotal = userData.get('wallet');
         const newWalletTotal = Number(currWalletTotal) + Number(coin);
+
         userData.set('wallet', newWalletTotal);
         win.send('wallet', userData.get('wallet'));
     });
@@ -51,9 +51,52 @@ function createWindow () {
             nameOfCrypto : nameOfCrypto,
             amount: amount
         }
+
+        let updatedCoins = {
+            'BTC': 0,
+            'ETH': 0,
+            'LINK': 0,
+            'BCH': 0,
+            'LTC': 0
+        };
+
         const data = userData.get('coin');
-        const newData = [...(data || []), obj]
-        userData.set('coin', newData)
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].nameOfCrypto == obj.nameOfCrypto) {
+                data[i].amount = Number(data[i].amount) + Number(obj.amount);
+            }
+        }
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].nameOfCrypto == 'BTC') {
+                updatedCoins.BTC = Number(data[i].amount);
+    
+            } else if (data[i].nameOfCrypto == 'ETH') {
+                updatedCoins.ETH = Number(data[i].amount);
+    
+            } else if (data[i].nameOfCrypto == 'LINK') {
+                updatedCoins.LINK = Number(data[i].amount);
+    
+            } else if (data[i].nameOfCrypto == 'BCH') {
+                updatedCoins.BCH = Number(data[i].amount);
+    
+            } else {
+                updatedCoins.LTC = Number(data[i].amount);
+            }
+        }
+
+        let updateStore = [];
+        for (const key in updatedCoins) {
+            let temp = {
+                nameOfCrypto: key,
+                amount : updatedCoins[key]
+            }
+            updateStore.push(temp)
+        }
+
+        // const newData = [...(data || []), obj]
+        // userData.set('coin', newData)
+        userData.set('coin', updateStore)
         win.send('list', userData.get('coin'));
     });
 

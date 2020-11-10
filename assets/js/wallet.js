@@ -9,8 +9,9 @@ const totalPrice = document.getElementById('total-price');
 const purchaseCoinsButton = document.getElementById('purchase-coins');
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    // create new array of coins
+document.addEventListener('DOMContentLoaded', function() {  
+    // update updated coins cards
+    let data = store.get('coin');
     let updatedCoins = {
         'BTC': 0,
         'ETH': 0,
@@ -19,27 +20,23 @@ document.addEventListener('DOMContentLoaded', function() {
         'LTC': 0
     };
 
-    // loop through the store coins 
-    let storeData = store.get('coin')
-    for (let i = 0; i < storeData.length; i++) {
-        if (storeData[i].nameOfCrypto == 'BTC') {
-            updatedCoins.BTC = storeData[i].amount;
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].nameOfCrypto == 'BTC') {
+            updatedCoins.BTC = Number(data[i].amount);
 
-        } else if (storeData[i].nameOfCrypto == 'ETH') {
-            updatedCoins.ETH = storeData[i].amount;
+        } else if (data[i].nameOfCrypto == 'ETH') {
+            updatedCoins.ETH = Number(data[i].amount);
 
-        } else if (storeData[i].nameOfCrypto == 'LINK') {
-            updatedCoins.LINK = storeData[i].amount;
+        } else if (data[i].nameOfCrypto == 'LINK') {
+            updatedCoins.LINK = Number(data[i].amount);
 
-        } else if (storeData[i].nameOfCrypto == 'BCH') {
-            updatedCoins.BCH = storeData[i].amount;
+        } else if (data[i].nameOfCrypto == 'BCH') {
+            updatedCoins.BCH = Number(data[i].amount);
 
         } else {
-            updatedCoins.LTC = storeData[i].amount;
+            updatedCoins.LTC = Number(data[i].amount);
         }
     }
-
-    console.log(updatedCoins);
 
     for (const key in updatedCoins) {
         let li = document.createElement('li');
@@ -83,10 +80,41 @@ ipc.on('wallet', (event, updatedWallet) => {
 });
 
 // receives update list information
-// ipc.on('list', (event, updatedList) => {
-//     let li = document.createElement('li');
-//     let index = updatedList.length - 1;
-//     let textNode = document.createTextNode(`${updatedList[index].nameOfCrypto} : ${updatedList[index].amount}`);
-//     li.appendChild(textNode);
-//     document.getElementById('owned-coins').appendChild(li);
-// });
+ipc.on('list', (event, updatedList) => {
+   console.log(updatedList);
+   let updatedCoins = {
+        'BTC': 0,
+        'ETH': 0,
+        'LINK': 0,
+        'BCH': 0,
+        'LTC': 0
+    };
+
+    for (let i = 0; i < updatedList.length; i++) {
+        if (updatedList[i].nameOfCrypto == 'BTC') {
+            updatedCoins.BTC = Number(updatedList[i].amount);
+
+        } else if (updatedList[i].nameOfCrypto == 'ETH') {
+            updatedCoins.ETH = Number(updatedList[i].amount);
+
+        } else if (updatedList[i].nameOfCrypto == 'LINK') {
+            updatedCoins.LINK = Number(updatedList[i].amount);
+
+        } else if (updatedList[i].nameOfCrypto == 'BCH') {
+            updatedCoins.BCH = Number(updatedList[i].amount);
+
+        } else {
+            updatedCoins.LTC = Number(updatedList[i].amount);
+        }
+    }
+
+    // TODO:
+    // dont update create new list, update current lists instead
+
+    for (const key in updatedCoins) {
+        let li = document.createElement('li');
+        let textNode = document.createTextNode(`${key} : ${updatedCoins[key]}`);
+        li.appendChild(textNode);
+        document.getElementById('owned-coins').appendChild(li);
+    }
+});

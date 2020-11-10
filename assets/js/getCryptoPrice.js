@@ -11,7 +11,7 @@ const imageArray = [];
         axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=USD`)
         .then(res => {
             let node = document.createElement("li");
-            let nameNode = document.createTextNode(`Coin: ${coin} Price: ${res.data.USD}`);
+            let nameNode = document.createTextNode(`Name: ${coin} Price: $${res.data.USD}`);
             node.appendChild(nameNode);
             document.getElementById('coins').appendChild(node);
         })

@@ -67,5 +67,5 @@ function mainLoop(coin) {
                 xhr.open('GET', `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${coin}&tsyms=USD`, true)
                 xhr.send();
                 xhr.onreadystatechange = processRequest;
-    }, 10000)
+    }, 15000)
 }

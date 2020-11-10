@@ -1,9 +1,54 @@
-/* TODO
-*** style each li
- */
-#coins > li {
-    list-style: none;
-    border: 3px red solid;
-    margin: 10px;
+.price-container {
+    display: block;
+    border-color: red;
     
+}
+
+.form-container {
+    margin: auto;
+    width: 400px;
+}
+
+.list-of-coins {
+    order: 2;
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 20px;
+    position: relative;
+    width: 50%;
+    overflow-x: hidden;
+}
+
+#search-crypto {
+    width: 200px;
+    height: 25px;
+    float:left;
+}
+
+#searchCoin {
+    text-align: center;
+    width: 100px;
+    height: 31px;
+    margin: 0;
+    float: left;
+    padding: 0;
+}
+
+#coins {
+    width: 83vw;
+    overflow-x: hidden;
+}
+
+#coins > li {
+    text-indent: 50px;
+    color: white;
+    border-radius: 10px;
+    list-style: none;
+    border: 1px #4a4a48 solid;
+    margin: 10px;
+}
+
+#coins > li:hover {
+    box-shadow: 2px 2px 6px 0px whitesmoke;
 }
