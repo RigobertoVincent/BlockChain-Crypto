@@ -81,7 +81,6 @@ ipc.on('wallet', (event, updatedWallet) => {
 
 // receives update list information
 ipc.on('list', (event, updatedList) => {
-   console.log(updatedList);
    let updatedCoins = {
         'BTC': 0,
         'ETH': 0,
@@ -108,13 +107,10 @@ ipc.on('list', (event, updatedList) => {
         }
     }
 
-    // TODO:
-    // dont update create new list, update current lists instead
-
-    for (const key in updatedCoins) {
-        let li = document.createElement('li');
-        let textNode = document.createTextNode(`${key} : ${updatedCoins[key]}`);
-        li.appendChild(textNode);
-        document.getElementById('owned-coins').appendChild(li);
+    let ul = document.getElementById('owned-coins');
+    let li = ul.getElementsByTagName('li');
+    
+    for (let i = 0; i < Object.values(updatedCoins).length; i++) {
+        li[i].innerHTML = `${Object.keys(updatedCoins)[i]} : ${Object.values(updatedCoins)[i]}`;
     }
 });
